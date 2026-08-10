@@ -1,9 +1,10 @@
 import { createNavbar } from '../components/navbar/navbar';
 import type { NavigateCallback } from '../components/navbar/navbar';
+import './home.css';
 
 export default function createHomePage(onNavigate: NavigateCallback): HTMLElement {
     const container = document.createElement('div');
-    container.className = 'page-container';
+    container.className = 'page-container home-page';
 
     const header = createNavbar('/', onNavigate);
 

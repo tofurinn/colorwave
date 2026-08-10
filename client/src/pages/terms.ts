@@ -1,9 +1,10 @@
 import { createNavbar } from '../components/navbar/navbar';
 import type { NavigateCallback } from '../components/navbar/navbar';
+import './terms.css';
 
 export default function createTermsPage(onNavigate: NavigateCallback): HTMLElement {
     const container = document.createElement('div');
-    container.className = 'page-container';
+    container.className = 'page-container terms-page';
 
     const header = createNavbar('/terms', onNavigate);
 

@@ -1,9 +1,9 @@
 import { createNavbar } from '../components/navbar/navbar';
 import type { NavigateCallback } from '../components/navbar/navbar';
-
+import './race-info.css';
 export default function createRaceInfoPage(onNavigate: NavigateCallback): HTMLElement {
     const container = document.createElement('div');
-    container.className = 'page-container';
+    container.className = 'page-container race-info-page';
 
     const header = createNavbar('/race-info', onNavigate);
 

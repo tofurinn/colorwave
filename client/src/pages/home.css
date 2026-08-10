@@ -1,0 +1,211 @@
+/* ------------------------------------------------------------
+   Home Hero
+   ------------------------------------------------------------ */
+
+.hero-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(320px, 1fr);
+  gap: 24px;
+  align-items: stretch;
+  padding: var(--space-md) 0;
+  isolation: isolate;
+}
+
+.hero-blobs {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-blobs span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.5;
+}
+
+.hero-blobs span:nth-child(1) {
+  width: 220px;
+  height: 220px;
+  top: -50px;
+  right: 220px;
+  background: var(--cw-yellow);
+}
+
+.hero-blobs span:nth-child(2) {
+  width: 260px;
+  height: 260px;
+  top: 20px;
+  right: -60px;
+  background: var(--cw-blue);
+}
+
+.hero-blobs span:nth-child(3) {
+  width: 180px;
+  height: 180px;
+  bottom: -60px;
+  left: 40%;
+  background: var(--cw-pink);
+  opacity: 0.35;
+}
+
+.hero-section .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  background: var(--cw-yellow);
+  color: #4a3600;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-section h1 {
+  margin: 0 0 20px;
+  font-size: clamp(2.8rem, 4vw, 4.4rem);
+  line-height: 1.05;
+  font-family: var(--heading);
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: var(--wave-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: black;
+}
+
+.hero-copy {
+  max-width: 640px;
+  margin: 0 0 28px;
+  font-size: 18px;
+  color: var(--text);
+}
+
+.cta-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ------------------------------------------------------------
+   Home cards
+   ------------------------------------------------------------ */
+
+.hero-card .card-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--cw-blue);
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
+/* ------------------------------------------------------------
+   Highlight stats
+   ------------------------------------------------------------ */
+
+.highlight-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.highlight-chip {
+  flex: 1 1 150px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.highlight-chip .num {
+  display: block;
+  font-family: var(--heading);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--cw-purple);
+}
+
+.highlight-chip .label {
+  font-size: 13px;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ------------------------------------------------------------
+   Home link grid
+   ------------------------------------------------------------ */
+
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.link-grid a {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: var(--text-h);
+  font-weight: 700;
+  background: var(--social-bg);
+  border-radius: 18px;
+  padding: 18px 44px 18px 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.link-grid a::after {
+  content: '→';
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 700;
+}
+
+.link-grid a:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.link-grid a:nth-child(1) {
+  background: rgba(96, 183, 241, 0.16);
+}
+
+.link-grid a:nth-child(2) {
+  background: rgba(143, 234, 164, 0.22);
+}
+
+.link-grid a:nth-child(3) {
+  background: rgba(117, 31, 205, 0.10);
+}
+
+.link-grid a:nth-child(4) {
+  background: rgba(253, 77, 146, 0.16);
+}
+
+/* ------------------------------------------------------------
+   Responsive Home
+   ------------------------------------------------------------ */
+
+@media (max-width: 1024px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+  }
+
+  .link-grid {
+    grid-template-columns: 1fr;
+  }
+}
