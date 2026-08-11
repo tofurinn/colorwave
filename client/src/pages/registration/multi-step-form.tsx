@@ -1,4 +1,6 @@
 import './steps/steps.css';
+import { createNavbar } from '../../components/navbar/navbar';
+import type { NavigateCallback } from '../../components/navbar/navbar';
 import createRaceInfoStep from './steps/step1';
 import createPersonalInfoStep from './steps/step2';
 import createAcademicInfoStep from './steps/step3';
@@ -45,7 +47,15 @@ interface MultiStepFormProps {
 
 export default function createMultiStepForm({ initialData }: MultiStepFormProps = {}): HTMLElement {
     const container = document.createElement('div');
-    container.className = 'registration-form-card';
+    container.className = 'registration-page';
+
+    const navbar = createNavbar('/registration', ((path: string) => {
+        window.history.pushState({}, '', path);
+        window.dispatchEvent(new PopStateEvent('popstate'));
+    }) as NavigateCallback);
+
+    const formCard = document.createElement('div');
+    formCard.className = 'registration-form-card';
 
     const state: RegistrationData = {
         raceInfo: {
@@ -206,6 +216,7 @@ export default function createMultiStepForm({ initialData }: MultiStepFormProps 
 
     renderStep();
 
-    container.append(header, progress, content);
+    formCard.append(header, progress, content);
+    container.append(navbar, formCard);
     return container;
 }

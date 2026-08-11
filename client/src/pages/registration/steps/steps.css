@@ -1,11 +1,19 @@
 :root {
     color-scheme: light;
-    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Google Sans Flex', Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.5;
     font-weight: 400;
     color: #1f2937;
-    background: linear-gradient(135deg, #fdf2f8 0%, #eef2ff 100%);
     
+    /* Colorwave Palette */
+    --pink: #FD4D92;
+    --yellow: #FBE567;
+    --mint: #8FEAA4;
+    --blue: #60B7F1;
+    --purple: #751FCD;
+    --white: #FFFFFF;
+    --black: #000000;
+
     /* Spacing scale */
     --space-xs: 4px;
     --space-sm: 8px;
@@ -14,14 +22,19 @@
     --space-xl: 32px;
     --space-2xl: 48px;
     
-    /* Colors */
-    --primary: #7c3aed;
-    --primary-light: #ede9fe;
-    --primary-dark: #6d28d9;
-    --success: #166534;
-    --success-bg: #dcfce7;
-    --error: #dc2626;
-    --error-bg: #fef2f2;
+    /* Derived colors */
+    --primary: #FD4D92;
+    --primary-light: rgba(253, 77, 146, 0.1);
+    --primary-dark: #e03a7a;
+    --secondary: #751FCD;
+    --secondary-light: rgba(117, 31, 205, 0.1);
+    --success: #8FEAA4;
+    --success-dark: #6bc97d;
+    --success-bg: rgba(143, 234, 164, 0.2);
+    --error: #FD4D92;
+    --error-bg: rgba(253, 77, 146, 0.1);
+    --info: #60B7F1;
+    --info-bg: rgba(96, 183, 241, 0.1);
     --text-primary: #0f172a;
     --text-secondary: #64748b;
     --text-muted: #94a3b8;
@@ -45,17 +58,65 @@
 body {
     margin: 0;
     min-height: 100vh;
-    background: linear-gradient(135deg, #fdf2f8 0%, #eef2ff 100%);
+    min-height: 100svh;
+    background-color: #ffffff;
+    background-image: linear-gradient(
+        135deg,
+        #ffaecf 0%,
+        #eda974 15%,
+        #ffef97 30%,
+        #97f99b 45%,
+        #96ccf8 60%,
+        #f1a3ff 75%,
+        #FD4D92 100%
+    );
+    background-size: 400% 400%;
+    animation: rainbowShift 30s ease infinite;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        #ffaecf 0%,
+        #eda974 15%,
+        #ffef97 30%,
+        #97f99b 45%,
+        #96ccf8 60%,
+        #f1a3ff 75%,
+        #FD4D92 100%
+    );
+    background-size: 400% 400%;
+    animation: rainbowShift 20s ease infinite;
+    opacity: 0.175;
+    z-index: -1;
+}
+
+@keyframes rainbowShift {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 0%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 100%; }
+    100% { background-position: 0% 50%; }
 }
 
 .registration-form-card {
-    max-width: 960px;
+    max-width: 100%;
+    width: 1126px;
     margin: var(--space-xl) auto;
     padding: var(--space-xl);
     border-radius: var(--radius-xl);
     background: var(--bg-white);
     box-shadow: var(--shadow-lg);
     animation: slideUp 0.4s ease-out;
+    min-height: calc(100vh - var(--space-xl) * 2);
+    box-sizing: border-box;
 }
 
 @keyframes slideUp {
@@ -145,22 +206,22 @@ body {
 
 .progress-step.active {
     background: var(--primary-light);
-    color: var(--primary-dark);
+    color: var(--primary);
 }
 
 .progress-step.active span {
     background: var(--primary);
     color: white;
-    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+    box-shadow: 0 2px 8px rgba(253, 77, 146, 0.3);
 }
 
 .progress-step.completed {
     background: var(--success-bg);
-    color: var(--success);
+    color: var(--success-dark);
 }
 
 .progress-step.completed span {
-    background: #22c55e;
+    background: var(--success);
     color: white;
 }
 
@@ -401,7 +462,7 @@ body {
     border: none;
     border-radius: var(--radius-full);
     padding: 14px 32px;
-    background: linear-gradient(135deg, var(--primary) 0%, #ec4899 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
     color: white;
     cursor: pointer;
     font-weight: 700;
@@ -415,7 +476,7 @@ body {
 .next-button:hover,
 .submit-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.35);
+    box-shadow: 0 8px 20px rgba(253, 77, 146, 0.35);
 }
 
 .next-button:active,
@@ -444,8 +505,8 @@ body {
 .summary-card {
     padding: var(--space-xl);
     border-radius: var(--radius-xl);
-    background: linear-gradient(135deg, var(--primary-light) 0%, #fdf2f8 100%);
-    border: 2px solid #ddd6fe;
+    background: linear-gradient(135deg, var(--primary-light) 0%, rgba(251, 229, 103, 0.1) 100%);
+    border: 2px solid rgba(253, 77, 146, 0.2);
     animation: slideUp 0.4s ease-out;
 }
 
@@ -629,7 +690,7 @@ body {
 .form-group.success input,
 .form-group.success select,
 .form-group.success textarea {
-    border-color: #22c55e;
+    border-color: var(--success);
 }
 
 /* Disabled states */
