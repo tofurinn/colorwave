@@ -1,6 +1,6 @@
 import { createNavbar } from '../components/navbar/navbar';
 import type { NavigateCallback } from '../components/navbar/navbar';
-
+import './about.css';
 export default function createAboutPage(onNavigate: NavigateCallback): HTMLElement {
     const container = document.createElement('div');
     container.className = 'page-container';
