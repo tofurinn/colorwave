@@ -1,4 +1,5 @@
 import createHomePage from './pages/home';
+import createParticipantListPage from './pages/Admin/ParticipationList/ParticipantList';
 import createMultiStepForm from './pages/registration/multi-step-form';
 import createAboutPage from './pages/about';
 import createRaceInfoPage from './pages/race-info';
@@ -40,6 +41,11 @@ const routes: RouteDefinition[] = [
         path: '/registration',
         title: 'Registration Preview',
         render: () => createMultiStepForm(),
+    },
+    {
+        path: '/ParticipantList',
+        title: 'Participant List',
+        render: () => createParticipantListPage(navigate),
     },
 ];
 
