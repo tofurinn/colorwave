@@ -1,9 +1,5 @@
-<<<<<<< Updated upstream
-import createHomePage from './pages/home';
-import createParticipantListPage from './pages/Admin/ParticipationList/ParticipantList';
-=======
 import createHomePage from './pages/index/home/home';
->>>>>>> Stashed changes
+import createParticipantListPage from './pages/Admin/ParticipationList/ParticipantList';
 import createMultiStepForm from './pages/registration/multi-step-form';
 import createAboutPage from './pages/index/about/about';
 import createRaceInfoPage from './pages/index/race-info/race-info';
