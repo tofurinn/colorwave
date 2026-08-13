@@ -199,3 +199,33 @@
     .topbar{padding:18px;flex-wrap:wrap;}
     .table-wrap{margin:14px;}
   }
+
+  /* ===================== COMBINED ADMIN VIEWS ===================== */
+  /* The admin console now lives in a single file. Sidebar links simply toggle
+     which <section class="view"> is shown, so only the active one is visible. */
+  .view{display:none;}
+  .view.active{display:flex;flex-direction:column;min-width:0;}
+
+  /* Amount / receipt file cells use the monospace font like IDs. */
+  .mono-cell{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--ink-soft);}
+
+  /* Badge for "Receipt Uploaded" / status chips. */
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    padding:3px 10px;
+    border-radius:99px;
+    font-size:11.5px;
+    font-weight:500;
+  }
+  .badge-accent{background:var(--accent-soft);color:var(--accent-strong);}
+  .badge-danger{background:var(--danger-soft);color:var(--danger);}
+
+  /* Checkbox columns (Tally / Attendance / Goodies) are vertical-centered and
+     not affected by the row's pointer cursor so rows stay clickable elsewhere. */
+  td.checkbox-cell{text-align:center;}
+  td.checkbox-cell input[type="checkbox"]{
+    width:17px;height:17px;
+    accent-color:var(--accent);
+    cursor:pointer;
+  }
