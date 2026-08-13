@@ -11,14 +11,7 @@
    ------------------------------------------------------------ */
 
 .about-page .page-section {
-  background:
-    radial-gradient(
-      circle at 90% 10%,
-      rgba(253, 77, 146, 0.13),
-      transparent 30%
-    ),
-    white;
-
+  background: white;
   border-top-color: var(--cw-pink);
 }
 
@@ -38,12 +31,7 @@
 .about-page .section-card:nth-child(2) {
   border-top-color: var(--cw-blue);
 
-  background:
-    linear-gradient(
-      120deg,
-      rgba(96, 183, 241, 0.07),
-      white 55%
-    );
+  background: white;
 }
 
 .about-page .section-card:nth-child(2)::after {
@@ -68,12 +56,7 @@
 .about-page .section-card:nth-child(3) {
   border-top-color: var(--cw-green);
 
-  background:
-    linear-gradient(
-      120deg,
-      rgba(143, 234, 164, 0.08),
-      white 55%
-    );
+  background: white;
 }
 
 .about-page .section-card:nth-child(3) h2 {

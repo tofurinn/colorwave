@@ -1,5 +1,5 @@
-import { createNavbar } from '../components/navbar/navbar';
-import type { NavigateCallback } from '../components/navbar/navbar';
+import { createNavbar } from '../../../components/navbar/navbar';
+import type { NavigateCallback } from '../../../components/navbar/navbar';
 import './race-info.css';
 export default function createRaceInfoPage(onNavigate: NavigateCallback): HTMLElement {
     const container = document.createElement('div');

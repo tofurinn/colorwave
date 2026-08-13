@@ -81,14 +81,7 @@
    ------------------------------------------------------------ */
 
 .terms-page .page-section {
-  background:
-    radial-gradient(
-      circle at 90% 10%,
-      rgba(117, 31, 205, 0.12),
-      transparent 30%
-    ),
-    white;
-
+  background: white;
   border-top-color: var(--cw-purple);
 }
 
@@ -103,12 +96,7 @@
 .terms-page .section-card:nth-child(2) {
   border-top-color: var(--cw-blue);
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(96, 183, 241, 0.07),
-      white 65%
-    );
+  background: white;
 }
 
 /* ------------------------------------------------------------
@@ -118,12 +106,7 @@
 .terms-page .section-card:nth-child(3) {
   border-top-color: var(--cw-yellow);
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(251, 229, 103, 0.09),
-      white 65%
-    );
+  background: white;
 }
 
 /* ------------------------------------------------------------
@@ -133,12 +116,7 @@
 .terms-page .section-card:nth-child(4) {
   border-top-color: var(--cw-pink);
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(253, 77, 146, 0.07),
-      white 65%
-    );
+  background: white;
 }
 
 /* ------------------------------------------------------------

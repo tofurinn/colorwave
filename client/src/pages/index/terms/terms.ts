@@ -1,6 +1,6 @@
 import './terms.css';
-import { createNavbar } from '../components/navbar/navbar';
-import type { NavigateCallback } from '../components/navbar/navbar';
+import { createNavbar } from '../../../components/navbar/navbar';
+import type { NavigateCallback } from '../../../components/navbar/navbar';
 import './terms.css';
 
 export default function createTermsPage(onNavigate: NavigateCallback): HTMLElement {

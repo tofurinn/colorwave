@@ -5,7 +5,7 @@ export function createNavbar(activePath: string, onNavigate: NavigateCallback): 
     header.className = 'site-header';
     header.innerHTML = `
         <div class="site-branding">
-            <a href="/" data-nav class="brand">Colorwave</a>
+            <a href="/" data-nav class="brand">ColorWave 2026</a>
         </div>
         <nav class="site-nav">
             <a href="/" data-nav>Home</a>

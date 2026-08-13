@@ -1,5 +1,5 @@
-import { createNavbar } from '../components/navbar/navbar';
-import type { NavigateCallback } from '../components/navbar/navbar';
+import { createNavbar } from '../../../components/navbar/navbar';
+import type { NavigateCallback } from '../../../components/navbar/navbar';
 import './home.css';
 
 export default function createHomePage(onNavigate: NavigateCallback): HTMLElement {
@@ -15,7 +15,7 @@ export default function createHomePage(onNavigate: NavigateCallback): HTMLElemen
     const heroSection = document.createElement('section');
     heroSection.className = 'hero-tagline-section';
     heroSection.innerHTML = `
-        <h1 class="hero-tagline">Run, celebrate, and connect with our race community.</h1>
+        <h1 class="hero-tagline">Colour the air, fun everywhere</h1>
     `;
 
     // Cards section for navigation

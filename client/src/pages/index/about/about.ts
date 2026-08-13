@@ -1,5 +1,5 @@
-import { createNavbar } from '../components/navbar/navbar';
-import type { NavigateCallback } from '../components/navbar/navbar';
+import { createNavbar } from '../../../components/navbar/navbar';
+import type { NavigateCallback } from '../../../components/navbar/navbar';
 import './about.css';
 export default function createAboutPage(onNavigate: NavigateCallback): HTMLElement {
     const container = document.createElement('div');
@@ -12,7 +12,14 @@ export default function createAboutPage(onNavigate: NavigateCallback): HTMLEleme
     main.innerHTML = `
         <section class="page-section">
             <h1>About Us</h1>
-            <p>Colorwave is dedicated to creating a welcoming, energizing race experience for runners of all levels. Our team focuses on safe courses, fun festivities, and supporting every participant from start to finish.</p>
+            <p>ColourWave 2026 is a brand-new event introduced by HELP University in collaboration
+between the Business Student Council (BSC) & the Psychology Student Union (PSU) from HELP University. This
+marathon is an event that consists of two main components, run and post-run activities. The
+run will be open to all university students across Malaysia with only one open category.</p>
+
+            <p>ColourWave 2026 is a vibrant fun run that brings participants together through colour,
+music, and celebration. Featuring exciting colour powder moments during the flag-off and
+finale, the event creates an energetic atmosphere filled with fun, laughter, and connection.</p>
         </section>
 
         <section class="section-card">

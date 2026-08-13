@@ -11,14 +11,7 @@
    ------------------------------------------------------------ */
 
 .race-info-page .page-section {
-  background:
-    radial-gradient(
-      circle at 90% 15%,
-      rgba(96, 183, 241, 0.15),
-      transparent 30%
-    ),
-    white;
-
+  background: white;
   border-top-color: var(--cw-blue);
 }
 
@@ -33,12 +26,7 @@
 .race-info-page .section-card:nth-child(2) {
   border-top-color: var(--cw-pink);
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(253, 77, 146, 0.07),
-      white 65%
-    );
+  background: white;
 }
 
 .race-info-page .section-card:nth-child(2) h2 {
@@ -73,12 +61,7 @@
 .race-info-page .section-card:nth-child(3) {
   border-top-color: var(--cw-green);
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(143, 234, 164, 0.08),
-      white 65%
-    );
+  background: white;
 }
 
 .race-info-page .section-card:nth-child(3) h2 {
@@ -92,12 +75,7 @@
 .race-info-page .section-card:nth-child(4) {
   border-top-color: var(--cw-yellow);
 
-  background:
-    linear-gradient(
-      135deg,
-      rgba(251, 229, 103, 0.10),
-      white 65%
-    );
+  background: white;
 }
 
 .race-info-page .section-card:nth-child(4) h2 {
