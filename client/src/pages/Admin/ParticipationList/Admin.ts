@@ -1,4 +1,3 @@
-import type { NavigateCallback } from '../../../components/navbar/navbar';
 import './ParticipantList.css';
 
 // ---- Data -----------------------------------------------------------------
@@ -245,7 +244,7 @@ function setActiveView(container: HTMLElement, view: ViewName): void {
 // Builds the whole app shell (sidebar, topbar, table) and returns it as an
 // HTMLElement so the SPA router can mount it inside #app.
 
-export default function createParticipantListPage(onNavigate: NavigateCallback): HTMLElement {
+export default function createAdminPage(): HTMLElement {
   const container = document.createElement('div');
   container.className = 'app';
 
@@ -263,7 +262,6 @@ export default function createParticipantListPage(onNavigate: NavigateCallback):
       </div>
 
       <nav class="sidebar-nav">
-        <a class="nav-item" href="/Overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Overview</a>
         <a class="nav-item" href="#" data-view="transaction"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/></svg>Transaction</a>
         <a class="nav-item active" href="#" data-view="participants"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0116 0v1"/></svg>List of Participants</a>
         <a class="nav-item" href="#" data-view="attendance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Attendance</a>
@@ -401,14 +399,6 @@ export default function createParticipantListPage(onNavigate: NavigateCallback):
       if (view) {
         setActiveView(container, view);
       }
-    });
-  });
-
-  // Any remaining sidebar links (e.g. Overview) still go through the SPA router.
-  container.querySelectorAll<HTMLAnchorElement>('.nav-item:not([data-view])').forEach((link) => {
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      onNavigate(link.getAttribute('href') ?? '/');
     });
   });
 

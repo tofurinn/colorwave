@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 import createHomePage from './pages/index/home/home';
 import createParticipantListPage from './pages/Admin/ParticipationList/ParticipantList';
+=======
+import createHomePage from './pages/home';
+import createAdminPage from './pages/Admin/ParticipationList/Admin';
+>>>>>>> Stashed changes
 import createMultiStepForm from './pages/registration/multi-step-form';
 import createAboutPage from './pages/index/about/about';
 import createRaceInfoPage from './pages/index/race-info/race-info';
@@ -43,9 +48,9 @@ const routes: RouteDefinition[] = [
         render: () => createMultiStepForm(),
     },
     {
-        path: '/ParticipantList',
-        title: 'Participant List',
-        render: () => createParticipantListPage(navigate),
+        path: '/admin',
+        title: 'Admin Page',
+        render: () => createAdminPage(),
     },
 ];
 
