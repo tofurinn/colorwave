@@ -59,29 +59,15 @@ body {
     margin: 0;
     min-height: 100vh;
     min-height: 100svh;
-    background-color: #ffffff;
-    background-image: linear-gradient(
-        135deg,
-        #ffaecf 0%,
-        #eda974 15%,
-        #ffef97 30%,
-        #97f99b 45%,
-        #96ccf8 60%,
-        #f1a3ff 75%,
-        #FD4D92 100%
-    );
-    background-size: 400% 400%;
-    animation: rainbowShift 30s ease infinite;
+    background: transparent;
     position: relative;
+    z-index: 0;
 }
 
 body::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: linear-gradient(
         135deg,
         #ffaecf 0%,
@@ -94,7 +80,7 @@ body::before {
     );
     background-size: 400% 400%;
     animation: rainbowShift 20s ease infinite;
-    opacity: 0.175;
+    opacity: 1;
     z-index: -1;
 }
 
@@ -106,16 +92,24 @@ body::before {
     100% { background-position: 0% 50%; }
 }
 
+.registration-page {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    background: transparent;
+}
+
 .registration-form-card {
     max-width: 100%;
-    width: 1126px;
+    width: min(1126px, calc(100% - 2rem));
     margin: var(--space-xl) auto;
     padding: var(--space-xl);
     border-radius: var(--radius-xl);
     background: var(--bg-white);
     box-shadow: var(--shadow-lg);
     animation: slideUp 0.4s ease-out;
-    min-height: calc(100vh - var(--space-xl) * 2);
+    min-height: auto;
     box-sizing: border-box;
 }
 

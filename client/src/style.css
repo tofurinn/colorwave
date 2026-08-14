@@ -256,7 +256,25 @@ code {
 }
 
 html {
+  min-height: 100%;
+  background: linear-gradient(
+    135deg,
+    #ffaecf 0%,
+    #eda974 15%,
+    #ffef97 30%,
+    #97f99b 45%,
+    #96ccf8 60%,
+    #f1a3ff 75%,
+    #FD4D92 100%
+  );
+  background-size: 400% 400%;
+  animation: rainbowShift 20s ease infinite;
+}
+
+body {
   min-height: 100vh;
+  min-height: 100svh;
+  background: transparent;
 }
 
 #app {
@@ -267,6 +285,7 @@ html {
   flex-direction: column;
   box-sizing: border-box;
   text-align: left;
+  background: transparent;
 }
 
 .site-header {

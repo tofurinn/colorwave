@@ -23,19 +23,17 @@ export default function createRaceInfoStep({
     container.innerHTML = `
         <div class="step-header">
             <h2>Step 1: Race Information</h2>
-            <p>Here is the event information provided by the organiser.</p>
+            <p>Heres some information if you don't know anything about it yet!</p>
         </div>
 
         <form class="registration-form">
             <div class="form-grid">
                 <div class="form-group full-width">
-                    <label>Race Name</label>
-                    <div class="info-card">Colorwave Charity Run</div>
+                    <label>ColorWave 2026 Run</label>
                 </div>
 
                 <div class="form-group full-width">
-                    <label>Short Description</label>
-                    <div class="info-card">Join us for a vibrant charity run supporting student wellbeing and community outreach.</div>
+                    <div class="info-card">ColourWave 2026 is a vibrant fun run that brings participaants together through colour, music, and celebration. Featuring exciting colour powder moments during the flag-off and finale, the event creates an energetic atmosphere filled with fun, laughter, and connection!</div>
                 </div>
 
                 <div class="form-group full-width">
@@ -52,7 +50,9 @@ export default function createRaceInfoStep({
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="next-button">Next</button>
+                <div class="button-group">
+                    <button type="submit" class="next-button">Next</button>
+                </div>
             </div>
         </form>
     `;
