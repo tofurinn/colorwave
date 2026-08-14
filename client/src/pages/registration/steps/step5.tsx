@@ -8,12 +8,14 @@ interface PaymentInfoData {
 interface PaymentInfoProps {
     paymentInfo: PaymentInfoData;
     setPaymentInfo: (info: PaymentInfoData) => void;
+    onBack?: () => void;
     onNext: () => void;
 }
 
 export default function createPaymentStep({
     paymentInfo,
     setPaymentInfo,
+    onBack,
     onNext,
 }: PaymentInfoProps): HTMLElement {
     const container = document.createElement('div');
@@ -37,14 +39,22 @@ export default function createPaymentStep({
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="next-button">Submit Registration</button>
+                <div class="button-group">
+                    ${onBack ? '<button type="button" class="back-button">Back</button>' : ''}
+                    <button type="submit" class="next-button">Submit Registration</button>
+                </div>
             </div>
         </form>
     `;
 
     const form = container.querySelector<HTMLFormElement>('form')!;
+    const backButton = container.querySelector<HTMLButtonElement>('.back-button');
     const paymentReceiptInput = container.querySelector<HTMLInputElement>('#paymentReceipt')!;
     const paymentNotesInput = container.querySelector<HTMLTextAreaElement>('#paymentNotes')!;
+
+    backButton?.addEventListener('click', () => {
+        onBack?.();
+    });
 
     const updatePaymentReceiptFile = (file: File | null) => {
         setPaymentInfo({

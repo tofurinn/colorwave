@@ -9,12 +9,14 @@ interface TShirtInfoData {
 interface TShirtInfoProps {
     tShirtInfo: TShirtInfoData;
     setTShirtInfo: (info: TShirtInfoData) => void;
+    onBack?: () => void;
     onNext: () => void;
 }
 
 export default function createTShirtStep({
     tShirtInfo,
     setTShirtInfo,
+    onBack,
     onNext,
 }: TShirtInfoProps): HTMLElement {
     const container = document.createElement('div');
@@ -22,7 +24,7 @@ export default function createTShirtStep({
     container.innerHTML = `
         <div class="step-header">
             <h2>Step 4: T-Shirt Selection</h2>
-            <p>Choose your preferred shirt size and race design.</p>
+            <p>Choose your preferred shirt size.</p>
         </div>
 
         <form class="registration-form">
@@ -38,19 +40,6 @@ export default function createTShirtStep({
                         <option value="XL">XL</option>
                     </select>
                 </div>
-                <div class="form-group full-width">
-                    <label for="design">Design</label>
-                    <select id="design">
-                        <option value="">Select design</option>
-                        <option value="wave">Wave</option>
-                        <option value="sunrise">Sunrise</option>
-                        <option value="motion">Motion</option>
-                    </select>
-                </div>
-                <div class="form-group full-width">
-                    <label for="notes">Special requests</label>
-                    <textarea id="notes" rows="3" placeholder="Any notes for your shirt"></textarea>
-                </div>
             </div>
 
             <div class="size-chart">
@@ -65,23 +54,29 @@ export default function createTShirtStep({
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="next-button">Next</button>
+                <div class="button-group">
+                    ${onBack ? '<button type="button" class="back-button">Back</button>' : ''}
+                    <button type="submit" class="next-button">Next</button>
+                </div>
             </div>
         </form>
     `;
 
     const form = container.querySelector<HTMLFormElement>('form')!;
+    const backButton = container.querySelector<HTMLButtonElement>('.back-button');
     const sizeSelect = container.querySelector<HTMLSelectElement>('#size')!;
-    const designSelect = container.querySelector<HTMLSelectElement>('#design')!;
-    const notesInput = container.querySelector<HTMLTextAreaElement>('#notes')!;
 
+    backButton?.addEventListener('click', () => {
+        onBack?.();
+    });
+
+    const normalizedDesign = tShirtInfo.design || 'wave';
     sizeSelect.value = tShirtInfo.size;
-    designSelect.value = tShirtInfo.design;
-    notesInput.value = tShirtInfo.notes;
 
     const updateTShirtInfo = (info: TShirtInfoData) => {
         setTShirtInfo({
             ...info,
+            design: normalizedDesign,
         });
     };
 
@@ -89,20 +84,7 @@ export default function createTShirtStep({
         updateTShirtInfo({
             ...tShirtInfo,
             size: sizeSelect.value,
-        });
-    });
-
-    designSelect.addEventListener('change', () => {
-        updateTShirtInfo({
-            ...tShirtInfo,
-            design: designSelect.value,
-        });
-    });
-
-    notesInput.addEventListener('input', () => {
-        updateTShirtInfo({
-            ...tShirtInfo,
-            notes: notesInput.value,
+            design: normalizedDesign,
         });
     });
 
@@ -111,8 +93,8 @@ export default function createTShirtStep({
 
         const currentInfo: TShirtInfoData = {
             size: sizeSelect.value,
-            design: designSelect.value,
-            notes: notesInput.value,
+            design: normalizedDesign,
+            notes: '',
         };
 
         if (!currentInfo.size) {

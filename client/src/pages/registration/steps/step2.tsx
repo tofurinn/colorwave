@@ -15,12 +15,14 @@ interface PersonalInfoData {
 interface PersonalInfoProps {
     personalInfo: PersonalInfoData;
     setPersonalInfo: (info: PersonalInfoData) => void;
+    onBack?: () => void;
     onNext: () => void;
 }
 
 export default function createPersonalInfoStep({
     personalInfo,
     setPersonalInfo,
+    onBack,
     onNext,
 }: PersonalInfoProps): HTMLElement {
     const container = document.createElement('div');
@@ -65,12 +67,12 @@ export default function createPersonalInfoStep({
 
                 <div class="form-group">
                     <label for="email">Email *</label>
-                    <input id="email" type="email" placeholder="you@example.com" required />
+                    <input id="email" type="email" placeholder="sixseven@example.com" required />
                 </div>
 
                 <div class="form-group">
                     <label for="emergencyName">Emergency Contact Name *</label>
-                    <input id="emergencyName" type="text" placeholder="e.g., Bonnie Bunny" required />
+                    <input id="emergencyName" type="text" placeholder="e.g., Bad Bunny" required />
                 </div>
 
                 <div class="form-group">
@@ -80,17 +82,28 @@ export default function createPersonalInfoStep({
 
                 <div class="form-group">
                     <label for="emergencyRelation">Emergency Contact Relation *</label>
-                    <input id="emergencyRelation" type="text" placeholder="e.g., Parent" required />
+                    <select id="emergencyRelation" required>
+                        <option value="">Select relationship</option>
+                        <option value="family">Family</option>
+                        <option value="partner">Partner</option>
+                        <option value="friend">Friend</option>
+                        <option value="co-worker">Co-worker</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="next-button">Next</button>
+                <div class="button-group">
+                    ${onBack ? '<button type="button" class="back-button">Back</button>' : ''}
+                    <button type="submit" class="next-button">Next</button>
+                </div>
             </div>
         </form>
     `;
 
     const form = container.querySelector<HTMLFormElement>('form')!;
+    const backButton = container.querySelector<HTMLButtonElement>('.back-button');
     const studentNameInput = container.querySelector<HTMLInputElement>('#studentName')!;
     const ageInput = container.querySelector<HTMLInputElement>('#age')!;
     const genderSelect = container.querySelector<HTMLSelectElement>('#gender')!;
@@ -99,7 +112,11 @@ export default function createPersonalInfoStep({
     const emailInput = container.querySelector<HTMLInputElement>('#email')!;
     const emergencyNameInput = container.querySelector<HTMLInputElement>('#emergencyName')!;
     const emergencyPhoneInput = container.querySelector<HTMLInputElement>('#emergencyPhone')!;
-    const emergencyRelationInput = container.querySelector<HTMLInputElement>('#emergencyRelation')!;
+    const emergencyRelationInput = container.querySelector<HTMLSelectElement>('#emergencyRelation')!;
+
+    backButton?.addEventListener('click', () => {
+        onBack?.();
+    });
 
     studentNameInput.value = personalInfo.studentName;
     ageInput.value = personalInfo.age ? String(personalInfo.age) : '';
@@ -150,8 +167,8 @@ export default function createPersonalInfoStep({
         updatePersonalInfo('emergencyPhone', (event.target as HTMLInputElement).value);
     });
 
-    emergencyRelationInput.addEventListener('input', (event) => {
-        updatePersonalInfo('emergencyRelation', (event.target as HTMLInputElement).value);
+    emergencyRelationInput.addEventListener('change', (event) => {
+        updatePersonalInfo('emergencyRelation', (event.target as HTMLSelectElement).value);
     });
 
     form.addEventListener('submit', (event) => {

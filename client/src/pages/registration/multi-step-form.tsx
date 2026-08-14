@@ -107,8 +107,8 @@ export default function createMultiStepForm({ initialData }: MultiStepFormProps 
     header.innerHTML = `
         <div>
             <p class="eyebrow">Student Registration</p>
-            <h1>Colorwave Race Registration</h1>
-            <p class="subtext">Complete each section to secure your place in the event.</p>
+            <h1>ColorWave 2026 Registration</h1>
+            <p class="subtext">Fill in all the fields that apply to you</p>
         </div>
     `;
 
@@ -133,19 +133,8 @@ export default function createMultiStepForm({ initialData }: MultiStepFormProps 
         });
 
         if (completed) {
-            content.innerHTML = `
-                <div class="summary-card">
-                    <h2>Registration Submitted</h2>
-                    <p>Your registration details have been captured successfully. A confirmation email will be sent once payment is verified.</p>
-                    <ul>
-                        <li><strong>Race:</strong> ${state.raceInfo.raceName || 'Not provided'}</li>
-                        <li><strong>Student:</strong> ${state.personalInfo.studentName || 'Not provided'}</li>
-                        <li><strong>Programme:</strong> ${state.academicInfo.studyProgramme || 'Not provided'}</li>
-                        <li><strong>T-Shirt:</strong> ${state.tShirtInfo.size || 'Not selected'} / ${state.tShirtInfo.design || 'Not selected'}</li>
-                    </ul>
-                </div>
-            `;
-            return;
+            currentStep = 1;
+            completed = false;
         }
 
         switch (currentStep) {
@@ -167,6 +156,10 @@ export default function createMultiStepForm({ initialData }: MultiStepFormProps 
                     setPersonalInfo: (info) => {
                         state.personalInfo = info;
                     },
+                    onBack: () => {
+                        currentStep = 1;
+                        renderStep();
+                    },
                     onNext: () => {
                         currentStep = 3;
                         renderStep();
@@ -178,6 +171,10 @@ export default function createMultiStepForm({ initialData }: MultiStepFormProps 
                     academicInfo: state.academicInfo,
                     setAcademicInfo: (info) => {
                         state.academicInfo = info;
+                    },
+                    onBack: () => {
+                        currentStep = 2;
+                        renderStep();
                     },
                     onNext: () => {
                         currentStep = 4;
@@ -191,6 +188,10 @@ export default function createMultiStepForm({ initialData }: MultiStepFormProps 
                     setTShirtInfo: (info) => {
                         state.tShirtInfo = info;
                     },
+                    onBack: () => {
+                        currentStep = 3;
+                        renderStep();
+                    },
                     onNext: () => {
                         currentStep = 5;
                         renderStep();
@@ -203,9 +204,16 @@ export default function createMultiStepForm({ initialData }: MultiStepFormProps 
                     setPaymentInfo: (info) => {
                         state.paymentInfo = info;
                     },
-                    onNext: () => {
-                        completed = true;
+                    onBack: () => {
+                        currentStep = 4;
                         renderStep();
+                    },
+                    onNext: () => {
+                        completed = false;
+                        currentStep = 1;
+                        window.alert('Successfully submitted registration form.');
+                        window.history.pushState({}, '', '/');
+                        window.dispatchEvent(new PopStateEvent('popstate'));
                     },
                 }));
                 break;

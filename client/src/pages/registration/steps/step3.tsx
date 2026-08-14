@@ -9,12 +9,14 @@ interface AcademicInfoData {
 interface AcademicInfoProps {
     academicInfo: AcademicInfoData;
     setAcademicInfo: (info: AcademicInfoData) => void;
+    onBack?: () => void;
     onNext: () => void;
 }
 
 export default function createAcademicInfoStep({
     academicInfo,
     setAcademicInfo,
+    onBack,
     onNext,
 }: AcademicInfoProps): HTMLElement {
     const container = document.createElement('div');
@@ -43,15 +45,23 @@ export default function createAcademicInfoStep({
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="next-button">Next</button>
+                <div class="button-group">
+                    ${onBack ? '<button type="button" class="back-button">Back</button>' : ''}
+                    <button type="submit" class="next-button">Next</button>
+                </div>
             </div>
         </form>
     `;
 
     const form = container.querySelector<HTMLFormElement>('form')!;
+    const backButton = container.querySelector<HTMLButtonElement>('.back-button');
     const universityNameInput = container.querySelector<HTMLInputElement>('#universityName')!;
     const studyProgrammeInput = container.querySelector<HTMLInputElement>('#studyProgramme')!;
     const studentCardFileInput = container.querySelector<HTMLInputElement>('#studentCardFile')!;
+
+    backButton?.addEventListener('click', () => {
+        onBack?.();
+    });
 
     universityNameInput.value = academicInfo.universityName;
     studyProgrammeInput.value = academicInfo.studyProgramme;
