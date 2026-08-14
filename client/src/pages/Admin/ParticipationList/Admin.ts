@@ -341,7 +341,7 @@ function openParticipantModal(participant: Participant): void {
 // "tally" checkbox admins can toggle to confirm the receipt matches the
 // actual amount that landed in the bank account.
 
-function renderTransactions(list: TransactionRecord[], container: HTMLElement): void {
+function renderTransactions(list: TransactionRecord[], container: HTMLElement, source: TransactionRecord[] = list): void {
   const tableBody = container.querySelector<HTMLTableSectionElement>('#transactionTableBody');
   if (!tableBody) return;
 
@@ -368,7 +368,7 @@ function renderTransactions(list: TransactionRecord[], container: HTMLElement): 
   container.querySelectorAll<HTMLInputElement>('.tally-checkbox').forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
       const index = Number(checkbox.dataset.index);
-      const record = transactions[index];
+      const record = source[index];
       if (record) {
         record.tally = checkbox.checked;
       }
@@ -380,7 +380,7 @@ function renderTransactions(list: TransactionRecord[], container: HTMLElement): 
 // Lets admins mark each participant as present on race day and confirm
 // whether they collected their event goodies.
 
-function renderAttendance(list: AttendanceRecord[], container: HTMLElement): void {
+function renderAttendance(list: AttendanceRecord[], container: HTMLElement, source: AttendanceRecord[] = list): void {
   const tableBody = container.querySelector<HTMLTableSectionElement>('#attendanceTableBody');
   if (!tableBody) return;
 
@@ -404,7 +404,7 @@ function renderAttendance(list: AttendanceRecord[], container: HTMLElement): voi
   container.querySelectorAll<HTMLInputElement>('.attendance-checkbox').forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
       const index = Number(checkbox.dataset.index);
-      const record = attendanceRecords[index];
+      const record = source[index];
       if (record) {
         record.attended = checkbox.checked;
       }
@@ -414,11 +414,63 @@ function renderAttendance(list: AttendanceRecord[], container: HTMLElement): voi
   container.querySelectorAll<HTMLInputElement>('.goodies-checkbox').forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
       const index = Number(checkbox.dataset.index);
-      const record = attendanceRecords[index];
+      const record = source[index];
       if (record) {
         record.goodiesCollected = checkbox.checked;
       }
     });
+  });
+}
+
+// ---- Search filtering ---------------------------------------------------------
+// Wires up the three topbar search boxes. Each filters its own table live as the
+// user types, matching against participant name or ID (case-insensitive). An
+// empty search shows the full dataset again.
+
+function filterByQuery<T>(records: T[], query: string, getFields: (record: T) => string[]): T[] {
+  const q = query.trim().toLowerCase();
+  if (!q) return records;
+  return records.filter((record) =>
+    getFields(record).some((field) => field.toLowerCase().includes(q))
+  );
+}
+
+function setupSearch(container: HTMLElement): void {
+  const participantsSearch = container.querySelector<HTMLInputElement>(
+    'section[data-view="participants"] .search-box input'
+  );
+  const transactionSearch = container.querySelector<HTMLInputElement>(
+    'section[data-view="transaction"] .search-box input'
+  );
+  const attendanceSearch = container.querySelector<HTMLInputElement>(
+    'section[data-view="attendance"] .search-box input'
+  );
+
+  participantsSearch?.addEventListener('input', () => {
+    const filtered = filterByQuery(
+      participants,
+      participantsSearch.value,
+      (p) => [p.name, p.id]
+    );
+    renderParticipants(filtered, container);
+  });
+
+  transactionSearch?.addEventListener('input', () => {
+    const filtered = filterByQuery(
+      transactions,
+      transactionSearch.value,
+      (t) => [t.participantName, t.participantId]
+    );
+    renderTransactions(filtered, container, transactions);
+  });
+
+  attendanceSearch?.addEventListener('input', () => {
+    const filtered = filterByQuery(
+      attendanceRecords,
+      attendanceSearch.value,
+      (a) => [a.participantName, a.participantId]
+    );
+    renderAttendance(filtered, container, attendanceRecords);
   });
 }
 
@@ -604,6 +656,8 @@ export default function createAdminPage(): HTMLElement {
   renderParticipants(participants, container);
   renderTransactions(transactions, container);
   renderAttendance(attendanceRecords, container);
+
+  setupSearch(container);
 
   return container;
 }
