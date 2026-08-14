@@ -33,7 +33,7 @@
 .terms-page .section-card h1 {
   font-size: 2.2rem;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--purple);
   margin-top: 0;
   margin-bottom: 12px;
 }
@@ -84,7 +84,7 @@
 /* Info Rows */
 .terms-page .info-row {
   background: rgba(117, 31, 205, 0.06);
-  border-left: 4px solid #751fcd;
+  border-left: 4px solid var(--purple);
   padding: 12px 16px;
   border-radius: 12px;
   font-size: 0.98rem;
@@ -98,8 +98,8 @@
 
 /* Registration Date Sub-Box */
 .terms-date-box {
-  background: rgba(0, 128, 128, 0.06);
-  border-left: 4px solid #008080;
+  background: rgba(96, 183, 241, 0.08);
+  border-left: 4px solid var(--blue);
   padding: 12px 18px;
   border-radius: 12px;
   margin-top: 14px;
@@ -112,12 +112,12 @@
 
 /* Warning Note */
 .terms-note {
-  background: rgba(255, 107, 129, 0.08);
-  border-left: 4px solid #ff6b81;
+  background: rgba(253, 77, 146, 0.08);
+  border-left: 4px solid var(--pink);
   padding: 12px 16px;
   border-radius: 12px;
   font-weight: 600;
-  color: #c92a42 !important;
+  color: var(--pink) !important;
   margin-top: 16px !important;
 }
 
@@ -127,66 +127,66 @@
 
 /* 1. Event Information (Purple) */
 .terms-page .event-info-card {
-  border-color: #751fcd;
+  border-color: var(--purple);
 }
 .terms-page .event-info-card h2 {
-  color: #751fcd;
+  color: var(--purple);
 }
 
 /* 2. Eligibility (Yellow / Amber) */
 .terms-page .eligibility-card {
-  border-color: #f1b000;
+  border-color: var(--yellow);
 }
 .terms-page .eligibility-card h2 {
-  color: #c98800;
+  color: var(--yellow);
 }
 
 /* 3. Registration (Teal / Blue) */
 .terms-page .registration-card {
-  border-color: #008080;
+  border-color: var(--blue);
 }
 .terms-page .registration-card h2 {
-  color: #008080;
+  color: var(--blue);
 }
 
 /* 4. Event Entry (Pink) */
 .terms-page .entry-card {
-  border-color: #ff6b81;
+  border-color: var(--pink);
 }
 .terms-page .entry-card h2 {
-  color: #e03b5b;
+  color: var(--pink);
 }
 
 /* 5. Road & Traffic Safety (Green) */
 .terms-page .safety-card {
-  border-color: #2e9e5b;
+  border-color: var(--mint);
 }
 .terms-page .safety-card h2 {
-  color: #2e9e5b;
+  color: var(--mint);
 }
 
 /* 6. Powder Safety (Purple) */
 .terms-page .powder-card {
-  border-color: #9c27b0;
+  border-color: var(--purple);
 }
 .terms-page .powder-card h2 {
-  color: #9c27b0;
+  color: var(--purple);
 }
 
 /* 7. Health & Medical (Pink / Coral) */
 .terms-page .medical-card {
-  border-color: #ff6b81;
+  border-color: var(--pink);
 }
 .terms-page .medical-card h2 {
-  color: #e03b5b;
+  color: var(--pink);
 }
 
 /* 8. Participant Conduct (Blue) */
 .terms-page .conduct-card {
-  border-color: #0288d1;
+  border-color: var(--blue);
 }
 .terms-page .conduct-card h2 {
-  color: #0288d1;
+  color: var(--blue);
 }
 
 /* Responsive grid for smaller screens */

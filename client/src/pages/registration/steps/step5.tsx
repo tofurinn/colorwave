@@ -1,4 +1,5 @@
 import './steps.css';
+import qrCodeUrl from '../../../assets/images/qrcode.png';
 
 interface PaymentInfoData {
     paymentReceiptFile: File | null;
@@ -27,6 +28,13 @@ export default function createPaymentStep({
         </div>
 
         <form class="registration-form">
+            <div class="payment-qr-panel">
+                <div class="payment-qr-card">
+                    <span class="payment-qr-label">Scan to pay</span>
+                    <img src="${qrCodeUrl}" alt="Payment QR code" class="payment-qr-image" />
+                </div>
+            </div>
+
             <div class="form-grid">
                 <div class="form-group full-width">
                     <label for="paymentReceipt">Payment Receipt (PDF) *</label>

@@ -72,8 +72,8 @@
 .nav-dropdown-toggle:hover,
 .site-nav a.active,
 .nav-dropdown.active .nav-dropdown-toggle {
-  color: #008080 !important;
-  background: #fde8ed !important;
+  color: var(--blue) !important;
+  background: #e6f5ff !important;
   border-radius: 9999px !important;
 }
 
@@ -115,8 +115,8 @@
 
 .nav-dropdown-menu a:hover,
 .nav-dropdown-menu a.active {
-  background: #fde8ed !important;
-  color: #008080 !important;
+  background: var(--blue) !important;
+  color: #e6f5ff !important;
 }
 
 .nav-dropdown-toggle::after {

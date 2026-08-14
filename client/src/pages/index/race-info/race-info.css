@@ -33,7 +33,7 @@
 .race-info-page .section-card h1 {
   font-size: 2.2rem;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--purple);
   margin-top: 0;
   margin-bottom: 12px;
 }
@@ -79,12 +79,12 @@
 }
 
 .race-info-page .date-card h2 {
-  color: #e03b5b;
+  color: var(--pink);
 }
 
 .race-info-page .date-card .info-row {
-  background: rgba(255, 107, 129, 0.08);
-  border-left: 5px solid #ff6b81;
+  background: rgba(253, 77, 146, 0.08);
+  border-left: 5px solid var(--pink);
 }
 
 /* ------------------------------------------------------------
@@ -95,12 +95,12 @@
 }
 
 .race-info-page .course-card h2 {
-  color: #2e9e5b;
+  color: var(--mint);
 }
 
 .race-info-page .course-card .info-row {
-  background: rgba(46, 158, 91, 0.08);
-  border-left: 5px solid #2e9e5b;
+  background: rgba(143, 234, 164, 0.12);
+  border-left: 5px solid var(--mint);
 }
 
 /* ------------------------------------------------------------

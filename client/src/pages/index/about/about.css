@@ -29,7 +29,7 @@
 .about-page .section-card h1 {
   font-size: 2.2rem;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--purple);
   margin-top: 0;
   margin-bottom: 20px;
 }
@@ -56,27 +56,27 @@
 
 /* Custom Card Accent Borders & Titles */
 .about-page .mission-card {
-  border-color: #008080; /* Teal accent border */
+  border-color: var(--blue);
 }
 
 .about-page .mission-card h2 {
-  color: #008080;
+  color: var(--blue);
 }
 
 .about-page .vision-card {
-  border-color: #ff6b81; /* Pink accent border */
+  border-color: var(--pink);
 }
 
 .about-page .vision-card h2 {
-  color: #ff6b81;
+  color: var(--pink);
 }
 
 .about-page .objectives-card {
-  border-color: #3b9c55; /* Green accent border */
+  border-color: var(--mint);
 }
 
 .about-page .objectives-card h2 {
-  color: #3b9c55;
+  color: var(--mint);
 }
 
 /* Objectives List */

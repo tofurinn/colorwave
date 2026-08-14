@@ -539,6 +539,43 @@ body::before {
     font-weight: 600;
 }
 
+.payment-qr-panel {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-lg);
+}
+
+.payment-qr-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, rgba(117, 31, 205, 0.06), rgba(253, 77, 146, 0.08));
+    border: 1px solid rgba(117, 31, 205, 0.16);
+    box-shadow: var(--shadow-sm);
+}
+
+.payment-qr-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple);
+}
+
+.payment-qr-image {
+    display: block;
+    width: min(220px, 60vw);
+    max-width: 220px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    background: var(--bg-white);
+    padding: var(--space-sm);
+    box-shadow: inset 0 0 0 1px rgba(117, 31, 205, 0.08);
+}
+
 @media (max-width: 720px) {
     .registration-form-card {
         padding: var(--space-md);
