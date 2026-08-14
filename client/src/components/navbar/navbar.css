@@ -1,16 +1,126 @@
-.navbar-logo {
-  height: 100px;   
-  width: 90px;
-  object-fit: contain;
-  display: inline-block;
+/* Header Container */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 32px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
+/* Brand & Logo */
 .site-branding .brand {
   display: inline-flex;
   align-items: center;
-  gap: 15px;                  
+  gap: 12px;
   text-decoration: none;
-  color: inherit;
+  color: #1a1a1a;
   font-weight: 700;
-  font-size: 1.25rem;        
+  font-size: 1.5rem;
+}
+
+.navbar-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Nav Links Container */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Base Pill Button & Links */
+.site-nav a,
+.nav-dropdown-toggle {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4a4a4a;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 9999px !important; /* Forces rounded pill shape */
+  border: none !important;          /* Removes default button border */
+  outline: none !important;         /* Removes browser blue/pink square focus border */
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Remove default browser focus outline completely */
+.site-nav a:focus,
+.site-nav a:active,
+.nav-dropdown-toggle:focus,
+.nav-dropdown-toggle:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Hover & Active States */
+.site-nav a:hover,
+.nav-dropdown-toggle:hover,
+.site-nav a.active,
+.nav-dropdown.active .nav-dropdown-toggle {
+  color: #008080 !important;
+  background: #fde8ed !important;
+  border-radius: 9999px !important;
+}
+
+/* Dropdown Container */
+.nav-dropdown {
+  position: relative;
+}
+
+/* Dropdown Menu Box */
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 190px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: none; /* Controlled via .open */
+  flex-direction: column;
+  gap: 4px;
+  z-index: 1000;
+}
+
+.nav-dropdown.open .nav-dropdown-menu {
+  display: flex;
+}
+
+/* Dropdown Sub-links */
+.nav-dropdown-menu a {
+  border-radius: 10px !important; /* Smaller roundness inside menu */
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  color: #4a4a4a;
+  text-align: left;
+  display: block;
+}
+
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a.active {
+  background: #fde8ed !important;
+  color: #008080 !important;
+}
+
+.nav-dropdown-toggle::after {
+  content: '▾';
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
 }

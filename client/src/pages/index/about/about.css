@@ -1,93 +1,93 @@
-/* ============================================================
-   ABOUT PAGE
-   ============================================================ */
-
+/* Page container & layout */
 .about-page {
   position: relative;
+  min-height: 100vh;
 }
 
-/* ------------------------------------------------------------
-   Introduction
-   ------------------------------------------------------------ */
-
-.about-page .page-section {
-  background: white;
-  border-top-color: var(--cw-pink);
+.about-page .page-content {
+  margin: 32px auto 60px auto; /* 32px gap below navbar */
+  width: calc(100% - 32px);    /* 16px left and right margin */
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;                  /* Gap between cards */
+  box-sizing: border-box;
 }
 
-.about-page .page-section h1 {
+/* Base Card Styling for All Sections */
+.about-page .section-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 32px 36px;
+  border: 1.5px solid rgba(0, 0, 0, 0.08); /* Card border */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+}
+
+/* Headings */
+.about-page .section-card h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-top: 0;
   margin-bottom: 20px;
 }
 
-.about-page .page-section > p {
-  max-width: 800px;
-  font-size: 17px;
+.about-page .section-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-top: 0;
+  margin-bottom: 14px;
 }
 
-/* ------------------------------------------------------------
-   Mission
-   ------------------------------------------------------------ */
-
-.about-page .section-card:nth-child(2) {
-  border-top-color: var(--cw-blue);
-
-  background: white;
+/* Paragraphs */
+.about-page .section-card p {
+  color: #4a4a4a;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0 0 14px 0;
 }
 
-.about-page .section-card:nth-child(2)::after {
-  content: '🎯';
-
-  position: absolute;
-  right: 30px;
-  top: 25px;
-
-  font-size: 42px;
-  opacity: 0.7;
+.about-page .section-card p:last-child {
+  margin-bottom: 0;
 }
 
-.about-page .section-card:nth-child(2) h2 {
-  color: var(--cw-blue);
+/* Custom Card Accent Borders & Titles */
+.about-page .mission-card {
+  border-color: #008080; /* Teal accent border */
 }
 
-/* ------------------------------------------------------------
-   What makes us different
-   ------------------------------------------------------------ */
-
-.about-page .section-card:nth-child(3) {
-  border-top-color: var(--cw-green);
-
-  background: white;
+.about-page .mission-card h2 {
+  color: #008080;
 }
 
-.about-page .section-card:nth-child(3) h2 {
+.about-page .vision-card {
+  border-color: #ff6b81; /* Pink accent border */
+}
+
+.about-page .vision-card h2 {
+  color: #ff6b81;
+}
+
+.about-page .objectives-card {
+  border-color: #3b9c55; /* Green accent border */
+}
+
+.about-page .objectives-card h2 {
   color: #3b9c55;
 }
 
-/* ------------------------------------------------------------
-   Better list
-   ------------------------------------------------------------ */
-
+/* Objectives List */
 .about-page .section-card ul {
-  margin-top: 18px;
+  margin: 12px 0 0 0;
+  padding-left: 20px;
 }
 
 .about-page .section-card li {
-  padding: 14px 12px 14px 34px;
-
-  border-radius: var(--radius-md);
-
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
-}
-
-.about-page .section-card li:hover {
-  background: rgba(143, 234, 164, 0.10);
-  transform: translateX(4px);
-}
-
-@media (max-width: 600px) {
-  .about-page .section-card:nth-child(2)::after {
-    display: none;
-  }
+  color: #4a4a4a;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 8px 0;
 }

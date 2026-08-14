@@ -3,195 +3,199 @@
    ============================================================ */
 
 .terms-page {
-  gap: 20px;
   position: relative;
+  min-height: 100vh;
 }
 
-.terms-intro {
+/* Page content wrapper with 16px side margin and centered alignment */
+.terms-page .page-content {
+  margin: 32px auto 60px auto;
+  width: calc(100% - 32px);    /* 16px margin on left and right */
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;                  /* Gap between cards */
+  box-sizing: border-box;
+}
+
+/* Base Card Styling */
+.terms-page .section-card {
+  position: relative;
   background: #ffffff;
-  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 32px 36px;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
 }
 
-.terms-section {
-  background: #ffffff;
-  border: 1px solid var(--border);
-  padding: 24px 28px;
-  margin-left: 12px;
-  margin-right: 12px;
+/* Headings */
+.terms-page .section-card h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-top: 0;
+  margin-bottom: 12px;
 }
 
-.terms-section h2 {
-  margin-bottom: 14px;
-  color: var(--accent);
+.terms-page .section-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 16px;
 }
 
-.terms-section:nth-of-type(2n) {
-  border-color: var(--purple);
+.terms-page .section-card p {
+  color: #4a4a4a;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  margin: 0 0 12px 0;
 }
 
-.terms-section:nth-of-type(2n) h2 {
-  color: var(--purple);
+.terms-page .section-card p:last-child {
+  margin-bottom: 0;
 }
 
-.terms-section:nth-of-type(4n) {
-  border-color: var(--blue);
-}
-
-.terms-section:nth-of-type(4n) h2 {
-  color: var(--blue);
-}
-
-.terms-section:nth-of-type(6n) {
-  border-color: var(--mint);
-}
-
-.terms-section:nth-of-type(6n) h2 {
-  color: var(--mint);
-}
-
-.terms-section p,
-.terms-section li {
-  color: var(--text);
-  line-height: 1.7;
-}
-
-.terms-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px 24px;
-}
-
-.terms-section ol {
+/* Lists */
+.terms-page .section-card ol {
   margin: 0 0 16px 20px;
   padding: 0;
 }
 
-.terms-section li + li {
-  margin-top: 8px;
-}
-
-.terms-note {
-  margin-top: 12px;
-  font-weight: 600;
-  color: var(--text-h);
-}
-
-/* ------------------------------------------------------------
-   Header (decorative rules from incoming branch)
-   ------------------------------------------------------------ */
-
-.terms-page .page-section {
-  background: white;
-  border-top-color: var(--cw-purple);
-}
-
-.terms-page .page-section h1 {
-  margin-bottom: 18px;
-}
-
-/* ------------------------------------------------------------
-   Registration
-   ------------------------------------------------------------ */
-
-.terms-page .section-card:nth-child(2) {
-  border-top-color: var(--cw-blue);
-
-  background: white;
-}
-
-/* ------------------------------------------------------------
-   Refund
-   ------------------------------------------------------------ */
-
-.terms-page .section-card:nth-child(3) {
-  border-top-color: var(--cw-yellow);
-
-  background: white;
-}
-
-/* ------------------------------------------------------------
-   Safety
-   ------------------------------------------------------------ */
-
-.terms-page .section-card:nth-child(4) {
-  border-top-color: var(--cw-pink);
-
-  background: white;
-}
-
-/* ------------------------------------------------------------
-   Section headings
-   ------------------------------------------------------------ */
-
-.terms-page .section-card h2 {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  font-size: 1.55rem;
-}
-
-.terms-page .section-card h2::before {
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 38px;
-  height: 38px;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background: var(--accent-bg);
-
-  font-size: 18px;
-}
-
-/* ------------------------------------------------------------
-   Lists
-   ------------------------------------------------------------ */
-
 .terms-page .section-card li {
-  padding: 14px 12px 14px 34px;
-  color: var(--text-h);
-
-  border-radius: var(--radius-md);
-
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+  color: #4a4a4a;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 4px 0;
 }
 
-.terms-page .section-card li:hover {
+.terms-page .section-card li + li {
+  margin-top: 6px;
+}
+
+/* Terms Grid for Event Info */
+.terms-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* Info Rows */
+.terms-page .info-row {
   background: rgba(117, 31, 205, 0.06);
-  transform: translateX(4px);
+  border-left: 4px solid #751fcd;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.98rem;
+  color: #333333;
+}
+
+.terms-page .info-row strong {
+  color: #1a1a1a;
+  margin-right: 6px;
+}
+
+/* Registration Date Sub-Box */
+.terms-date-box {
+  background: rgba(0, 128, 128, 0.06);
+  border-left: 4px solid #008080;
+  padding: 12px 18px;
+  border-radius: 12px;
+  margin-top: 14px;
+}
+
+.terms-date-box p {
+  margin: 4px 0;
+  color: #1a1a1a;
+}
+
+/* Warning Note */
+.terms-note {
+  background: rgba(255, 107, 129, 0.08);
+  border-left: 4px solid #ff6b81;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #c92a42 !important;
+  margin-top: 16px !important;
 }
 
 /* ------------------------------------------------------------
-   Refund paragraph
+   Card Color Accents
    ------------------------------------------------------------ */
 
-.terms-page .section-card:nth-child(3) p {
-  padding: 18px;
-
-  border-radius: var(--radius-md);
-
-  background: rgba(251, 229, 103, 0.12);
-
-  border-left: 4px solid var(--cw-yellow);
+/* 1. Event Information (Purple) */
+.terms-page .event-info-card {
+  border-color: #751fcd;
+}
+.terms-page .event-info-card h2 {
+  color: #751fcd;
 }
 
-@media (max-width: 1024px) {
-  .terms-section {
-    margin-left: 0;
-    margin-right: 0;
-    padding: 20px 18px;
-  }
+/* 2. Eligibility (Yellow / Amber) */
+.terms-page .eligibility-card {
+  border-color: #f1b000;
+}
+.terms-page .eligibility-card h2 {
+  color: #c98800;
+}
 
+/* 3. Registration (Teal / Blue) */
+.terms-page .registration-card {
+  border-color: #008080;
+}
+.terms-page .registration-card h2 {
+  color: #008080;
+}
+
+/* 4. Event Entry (Pink) */
+.terms-page .entry-card {
+  border-color: #ff6b81;
+}
+.terms-page .entry-card h2 {
+  color: #e03b5b;
+}
+
+/* 5. Road & Traffic Safety (Green) */
+.terms-page .safety-card {
+  border-color: #2e9e5b;
+}
+.terms-page .safety-card h2 {
+  color: #2e9e5b;
+}
+
+/* 6. Powder Safety (Purple) */
+.terms-page .powder-card {
+  border-color: #9c27b0;
+}
+.terms-page .powder-card h2 {
+  color: #9c27b0;
+}
+
+/* 7. Health & Medical (Pink / Coral) */
+.terms-page .medical-card {
+  border-color: #ff6b81;
+}
+.terms-page .medical-card h2 {
+  color: #e03b5b;
+}
+
+/* 8. Participant Conduct (Blue) */
+.terms-page .conduct-card {
+  border-color: #0288d1;
+}
+.terms-page .conduct-card h2 {
+  color: #0288d1;
+}
+
+/* Responsive grid for smaller screens */
+@media (max-width: 768px) {
   .terms-grid {
     grid-template-columns: 1fr;
   }
-}
 
+  .terms-page .section-card {
+    padding: 24px 20px;
+  }
+}

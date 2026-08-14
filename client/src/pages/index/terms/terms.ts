@@ -1,4 +1,3 @@
-import './terms.css';
 import { createNavbar } from '../../../components/navbar/navbar';
 import type { NavigateCallback } from '../../../components/navbar/navbar';
 import './terms.css';
@@ -10,40 +9,42 @@ export default function createTermsPage(onNavigate: NavigateCallback): HTMLEleme
     const header = createNavbar('/terms', onNavigate);
 
     const main = document.createElement('main');
-    main.className = 'page-content terms-page';
+    main.className = 'page-content';
     main.innerHTML = `
-        <section class="page-section terms-intro">
+        <section class="section-card header-card">
             <h1>Terms & Conditions</h1>
             <p>These Terms & Conditions apply to the ColourWave 2026 event and all participant registrations.</p>
         </section>
 
-        <section class="section-card terms-section">
+        <section class="section-card event-info-card">
             <h2>1. Event Information</h2>
             <div class="terms-grid">
-                <p><strong>Event Name:</strong> ColourWave 2026</p>
-                <p><strong>Date:</strong> 1 November 2026</p>
-                <p><strong>Venue:</strong> HELP University Subang Bestari</p>
-                <p><strong>Distance:</strong> 4KM</p>
+                <div class="info-row"><strong>Event Name:</strong> ColourWave 2026</div>
+                <div class="info-row"><strong>Date:</strong> 1 November 2026</div>
+                <div class="info-row"><strong>Venue:</strong> HELP University Subang Bestari</div>
+                <div class="info-row"><strong>Distance:</strong> 4 KM</div>
             </div>
         </section>
 
-        <section class="section-card terms-section">
+        <section class="section-card eligibility-card">
             <h2>2. Eligibility</h2>
             <p>Open to all university students. This event is open for registration to Malaysians and Non-Malaysians.</p>
         </section>
 
-        <section class="section-card terms-section">
+        <section class="section-card registration-card">
             <h2>3. Registration</h2>
             <ol>
                 <li>Registration will be done virtually via a website created by the organiser.</li>
                 <li>All payments will be transacted directly to HELP University’s bank account.</li>
                 <li>Registration fees are non-refundable, unless the organiser decides otherwise.</li>
             </ol>
-            <p><strong>Registration opens:</strong> 31 August 2026</p>
-            <p><strong>Registration closes:</strong> 25 October 2026</p>
+            <div class="terms-date-box">
+                <p><strong>Registration opens:</strong> 31 August 2026</p>
+                <p><strong>Registration closes:</strong> 25 October 2026</p>
+            </div>
         </section>
 
-        <section class="section-card terms-section">
+        <section class="section-card entry-card">
             <h2>4. Event Entry</h2>
             <ol>
                 <li>Organisers will not be responsible for any disputes arising from incomplete and/or incorrect entry details given by the participants.</li>
@@ -53,7 +54,7 @@ export default function createTermsPage(onNavigate: NavigateCallback): HTMLEleme
             </ol>
         </section>
 
-        <section class="section-card terms-section">
+        <section class="section-card safety-card">
             <h2>5. Road & Traffic Safety</h2>
             <ol>
                 <li>The organisers reserve the right to amend the racecourse with prior notice to participants.</li>
@@ -64,7 +65,7 @@ export default function createTermsPage(onNavigate: NavigateCallback): HTMLEleme
             </ol>
         </section>
 
-        <section class="section-card terms-section">
+        <section class="section-card powder-card">
             <h2>6. Colour Powder Safety</h2>
             <ol>
                 <li>Colour Powder will only be used at designated areas as per mentioned in the route / event floorplan.</li>
@@ -73,7 +74,7 @@ export default function createTermsPage(onNavigate: NavigateCallback): HTMLEleme
             </ol>
         </section>
 
-        <section class="section-card terms-section">
+        <section class="section-card medical-card">
             <h2>7. Health & Medical</h2>
             <p>All participants are to ensure the following medical advisory:</p>
             <ol>
@@ -83,10 +84,10 @@ export default function createTermsPage(onNavigate: NavigateCallback): HTMLEleme
                 <li>Participants are advised to dress appropriately.</li>
                 <li>Should any participants feel unwell in the course of the race, he/she should stop and seek immediate medical attention at designated medical posts.</li>
             </ol>
-            <p class="terms-note">The organisers reserve the right to remove any participant deemed physically incapable of continuing the race.</p>
+            <p class="terms-note">⚠️ The organisers reserve the right to remove any participant deemed physically incapable of continuing the race.</p>
         </section>
 
-        <section class="section-card terms-section">
+        <section class="section-card conduct-card">
             <h2>8. Participant Conduct</h2>
             <ol>
                 <li>The organisers shall not be liable for any damages arising from personal injuries sustained by the participants while and during the event.</li>
@@ -96,7 +97,7 @@ export default function createTermsPage(onNavigate: NavigateCallback): HTMLEleme
                 <li>Participants acknowledge that photographs / videos may be taken during and throughout the event.</li>
                 <li>Images may be used for event documentation, publicity and promotional purposes.</li>
             </ol>
-            <p class="terms-note">The organisers reserve the right to remove any participant who breach the rules.</p>
+            <p class="terms-note">⚠️ The organisers reserve the right to remove any participant who breaches the rules.</p>
         </section>
     `;
 

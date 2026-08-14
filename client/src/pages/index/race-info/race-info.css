@@ -4,110 +4,117 @@
 
 .race-info-page {
   position: relative;
+  min-height: 100vh;
 }
 
-/* ------------------------------------------------------------
-   Header
-   ------------------------------------------------------------ */
-
-.race-info-page .page-section {
-  background: white;
-  border-top-color: var(--cw-blue);
+/* Page content wrapper with 16px side margin and gap */
+.race-info-page .page-content {
+  margin: 32px auto 60px auto;
+  width: calc(100% - 32px);    /* 16px margin on left and right */
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;                  /* Gap between each card */
+  box-sizing: border-box;
 }
 
-.race-info-page .page-section h1 {
-  margin-bottom: 18px;
+/* Base Card Styling */
+.race-info-page .section-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 32px 36px;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
 }
 
-/* ------------------------------------------------------------
-   Race date card
-   ------------------------------------------------------------ */
-
-.race-info-page .section-card:nth-child(2) {
-  border-top-color: var(--cw-pink);
-
-  background: white;
+/* Headings */
+.race-info-page .section-card h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-top: 0;
+  margin-bottom: 12px;
 }
 
-.race-info-page .section-card:nth-child(2) h2 {
-  color: var(--cw-pink);
+.race-info-page .section-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
-/* Make the date information stand out */
-
-.race-info-page .section-card:nth-child(2) p {
-  padding: 13px 16px;
-  margin-bottom: 8px;
-
-  background: rgba(253, 77, 146, 0.05);
-
-  border-radius: var(--radius-md);
-
-  border-left: 4px solid var(--cw-pink);
+.race-info-page .section-card p {
+  color: #4a4a4a;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0;
 }
 
-.race-info-page .section-card:nth-child(2) p:last-child {
+/* Base Info Row (Highlight Bars) */
+.race-info-page .info-row {
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333333;
+}
+
+.race-info-page .info-row:last-child {
   margin-bottom: 0;
 }
 
-.race-info-page .section-card strong {
-  color: var(--text-h);
+.race-info-page .info-row strong {
+  color: #1a1a1a;
+  margin-right: 6px;
 }
 
 /* ------------------------------------------------------------
-   Course details
+   1. Race Date & Schedule (Pink)
    ------------------------------------------------------------ */
-
-.race-info-page .section-card:nth-child(3) {
-  border-top-color: var(--cw-green);
-
-  background: white;
+.race-info-page .date-card {
+  border-color: #ff6b81;
 }
 
-.race-info-page .section-card:nth-child(3) h2 {
-  color: #399c55;
+.race-info-page .date-card h2 {
+  color: #e03b5b;
+}
+
+.race-info-page .date-card .info-row {
+  background: rgba(255, 107, 129, 0.08);
+  border-left: 5px solid #ff6b81;
 }
 
 /* ------------------------------------------------------------
-   Important notes
+   2. Course Details (Green)
    ------------------------------------------------------------ */
-
-.race-info-page .section-card:nth-child(4) {
-  border-top-color: var(--cw-yellow);
-
-  background: white;
+.race-info-page .course-card {
+  border-color: #2e9e5b;
 }
 
-.race-info-page .section-card:nth-child(4) h2 {
-  color: #806c00;
+.race-info-page .course-card h2 {
+  color: #2e9e5b;
+}
+
+.race-info-page .course-card .info-row {
+  background: rgba(46, 158, 91, 0.08);
+  border-left: 5px solid #2e9e5b;
 }
 
 /* ------------------------------------------------------------
-   Lists
+   3. Important Notes (Yellow/Amber)
    ------------------------------------------------------------ */
-
-.race-info-page .section-card li {
-  padding: 14px 12px 14px 34px;
-
-  border-radius: var(--radius-md);
-
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+.race-info-page .notes-card {
+  border-color: #f1b000;
 }
 
-.race-info-page .section-card li:hover {
-  background: rgba(96, 183, 241, 0.08);
-  transform: translateX(4px);
+.race-info-page .notes-card h2 {
+  color: #c98800;
 }
 
-/* Different check colours */
-
-.race-info-page .section-card:nth-child(3) li::before {
-  background: var(--cw-green);
-}
-
-.race-info-page .section-card:nth-child(4) li::before {
-  background: var(--cw-yellow);
-  color: #625300;
+.race-info-page .notes-card .info-row {
+  background: rgba(241, 176, 0, 0.10);
+  border-left: 5px solid #f1b000;
 }
