@@ -1,4 +1,4 @@
-import './ParticipantList.css';
+import './Admin.css';
 
 // ---- Data -----------------------------------------------------------------
 // Replace this with a real data source (API fetch, etc.) later.
@@ -10,7 +10,22 @@ import './ParticipantList.css';
 interface Participant {
   id: string;
   name: string;
+  tncAgreement: boolean;
+  age: number;
+  gender: string;
+  icNumber: string;
+  phoneNumber: string;
+  personalEmail: string;
+  emergencyContactName: string;
+  emergencyContactNumber: string;
+  emergencyRelation: string;
+  underageConsent: boolean;
   university: string;
+  studyProgramme: string;
+  studentCard: string;
+  tshirtSize: string;
+  paymentReceipt: string;
+  paymentConfirmation: boolean;
   registrationDate: string;
   status: string;
 }
@@ -34,21 +49,66 @@ const participants: Participant[] = [
   {
     id: 'P-001',
     name: 'Aiman Haziq bin Rosli',
+    tncAgreement: true,
+    age: 21,
+    gender: 'Male',
+    icNumber: '030214-10-0532',
+    phoneNumber: '+60 12-345 6789',
+    personalEmail: 'aiman.haziq@example.com',
+    emergencyContactName: 'Rosli bin Ahmad',
+    emergencyContactNumber: '+60 13-111 2222',
+    emergencyRelation: 'Father',
+    underageConsent: true,
     university: 'Universiti Teknologi Malaysia',
+    studyProgramme: 'Bachelor of Computer Science',
+    studentCard: 'student_card_P001.jpg',
+    tshirtSize: 'L',
+    paymentReceipt: 'receipt_P001.pdf',
+    paymentConfirmation: true,
     registrationDate: '12 Jul 2026',
     status: 'Confirmed',
   },
   {
     id: 'P-002',
     name: 'Nur Aisyah binti Kamal',
+    tncAgreement: true,
+    age: 20,
+    gender: 'Female',
+    icNumber: '040512-14-0921',
+    phoneNumber: '+60 14-555 7788',
+    personalEmail: 'nur.aisyah@example.com',
+    emergencyContactName: 'Kamal bin Ismail',
+    emergencyContactNumber: '+60 12-999 0000',
+    emergencyRelation: 'Father',
+    underageConsent: false,
     university: 'Universiti Putra Malaysia',
+    studyProgramme: 'Bachelor of Business Administration',
+    studentCard: 'student_card_P002.jpg',
+    tshirtSize: 'M',
+    paymentReceipt: 'receipt_P002.pdf',
+    paymentConfirmation: true,
     registrationDate: '13 Jul 2026',
     status: 'Confirmed',
   },
   {
     id: 'P-003',
     name: 'Kevin Tan Wei Jie',
+    tncAgreement: false,
+    age: 22,
+    gender: 'Male',
+    icNumber: '020318-08-4521',
+    phoneNumber: '+60 16-222 3344',
+    personalEmail: 'kevin.tan@example.com',
+    emergencyContactName: 'Tan Siew Lian',
+    emergencyContactNumber: '+60 17-888 9911',
+    emergencyRelation: 'Mother',
+    underageConsent: false,
     university: 'Universiti Malaya',
+    studyProgramme: 'Bachelor of Software Engineering',
+    studentCard: 'student_card_P003.jpg',
+    tshirtSize: 'XL',
+    paymentReceipt: 'receipt_P003.pdf',
+    paymentConfirmation: false,
     registrationDate: '14 Jul 2026',
     status: 'Pending',
   },
@@ -99,6 +159,15 @@ const attendanceRecords: AttendanceRecord[] = [
   },
 ];
 
+// ---- Try Password Prompt ---------------------------------------------------------
+// This is a temporary measure to prevent random people from stumbling into the
+// admin console. In a real app, this would be replaced with proper authentication.
+//const password = prompt('Enter admin password:');
+//if (password !== 'admin123') {
+  //alert('Invalid password. Access denied.');
+  //window.location.href = 'home';
+//}
+
 // ---- Formatting helpers -----------------------------------------------------
 
 function formatCurrency(amount: number): string {
@@ -128,13 +197,143 @@ function renderParticipants(list: Participant[], container: HTMLElement): void {
   attachParticipantRowClickHandlers(container);
 }
 
-// Redirects to the participant detail page when a row is clicked.
+// Opens a wide modal popup with the full details of the selected participant
+// instead of navigating away. The modal is appended to <body> so it overlays
+// the whole admin console.
 function attachParticipantRowClickHandlers(container: HTMLElement): void {
   container.querySelectorAll<HTMLTableRowElement>('#participantsTableBody tr').forEach((row) => {
     row.addEventListener('click', () => {
-      window.location.href = 'ParticipantDetail.html';
+      const id = row.querySelector<HTMLElement>('.id-cell')?.textContent?.trim() ?? '';
+      const participant = participants.find((p) => p.id === id);
+      if (participant) {
+        openParticipantModal(participant);
+      }
     });
   });
+}
+
+// Tiny helper to render a labelled detail field inside the modal.
+function detailField(label: string, value: string, mono = false): string {
+  return `
+    <div class="field">
+      <span class="field-label">${label}</span>
+      <span class="field-value ${mono ? 'mono' : ''}">${value}</span>
+    </div>`;
+}
+
+function openParticipantModal(participant: Participant): void {
+  // Remove any already-open modal first.
+  document.querySelector('.participant-modal')?.remove();
+
+  const overlay = document.createElement('div');
+  overlay.className = 'participant-modal';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+
+  const yes = '<span class="badge badge-accent">Yes</span>';
+  const no = '<span class="badge badge-danger">No</span>';
+
+  overlay.innerHTML = `
+    <div class="modal">
+      <div class="modal-head">
+        <div class="modal-title">
+          <h2>${participant.name}</h2>
+          <div class="modal-sub">Participant ID <span class="mono-inline">${participant.id}</span></div>
+        </div>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- ============ PERSONAL INFORMATION ============ -->
+        <section class="detail-card">
+          <div class="detail-card-head"><h2>Personal Information</h2></div>
+          <div class="detail-grid">
+            ${detailField('Participant ID', participant.id, true)}
+            ${detailField('Student Name', participant.name)}
+            ${detailField('Age', String(participant.age))}
+            ${detailField('Gender', participant.gender)}
+            ${detailField('IC Number', participant.icNumber, true)}
+            ${detailField('Phone Number', participant.phoneNumber, true)}
+            ${detailField('Personal Email', participant.personalEmail)}
+            ${detailField('T&amp;C Agreement', participant.tncAgreement ? yes : no)}
+          </div>
+        </section>
+
+        <!-- ============ EMERGENCY CONTACT ============ -->
+        <section class="detail-card">
+          <div class="detail-card-head"><h2>Emergency Contact</h2></div>
+          <div class="detail-grid">
+            ${detailField('Contact Name', participant.emergencyContactName)}
+            ${detailField('Contact Number', participant.emergencyContactNumber, true)}
+            ${detailField('Relation', participant.emergencyRelation)}
+            ${detailField('Underage Consent', participant.underageConsent ? yes : no)}
+          </div>
+        </section>
+
+        <!-- ============ ACADEMIC INFORMATION ============ -->
+        <section class="detail-card">
+          <div class="detail-card-head"><h2>Academic Information</h2></div>
+          <div class="detail-grid">
+            ${detailField('University Name', participant.university)}
+            ${detailField('Study Programme', participant.studyProgramme)}
+            <div class="field span-2">
+              <span class="field-label">Student Card</span>
+              <a class="file-chip" href="#">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M15 9h3M15 13h3M6 17h5"/></svg>
+                ${participant.studentCard}
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ REGISTRATION & T-SHIRT ============ -->
+        <section class="detail-card">
+          <div class="detail-card-head"><h2>Registration</h2></div>
+          <div class="detail-grid">
+            ${detailField('Registration Date', participant.registrationDate, true)}
+            <div class="field">
+              <span class="field-label">Registration Status</span>
+              <span class="field-value"><span class="badge ${participant.status === 'Confirmed' ? 'badge-accent' : 'badge-danger'}">${participant.status}</span></span>
+            </div>
+            ${detailField('T-Shirt Size', participant.tshirtSize)}
+          </div>
+        </section>
+
+        <!-- ============ PAYMENT ============ -->
+        <section class="detail-card">
+          <div class="detail-card-head"><h2>Payment</h2></div>
+          <div class="detail-grid">
+            <div class="field span-2">
+              <span class="field-label">Payment Receipt</span>
+              <a class="file-chip" href="#">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+                ${participant.paymentReceipt}
+              </a>
+            </div>
+            ${detailField('Payment Confirmation', participant.paymentConfirmation ? yes : no)}
+          </div>
+        </section>
+
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  const closeModal = (): void => {
+    overlay.remove();
+    document.removeEventListener('keydown', onKeyDown);
+  };
+  const onKeyDown = (event: KeyboardEvent): void => {
+    if (event.key === 'Escape') closeModal();
+  };
+
+  overlay.querySelector('.modal-close')?.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', onKeyDown);
 }
 
 // ---- Render: Transaction -----------------------------------------------------
@@ -280,7 +479,7 @@ export default function createAdminPage(): HTMLElement {
           <div class="topbar-actions">
             <div class="search-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-              <input type="text" placeholder="Search transaction, participant…">
+              <input type="text" placeholder="Search by participant name or ID…">
             </div>
           </div>
         </div>
@@ -320,7 +519,7 @@ export default function createAdminPage(): HTMLElement {
           <div class="topbar-actions">
             <div class="search-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-              <input type="text" placeholder="Search by participant name or ID…">
+              <input type="text" placeholder="Search transaction, participant…">
             </div>
           </div>
         </div>
